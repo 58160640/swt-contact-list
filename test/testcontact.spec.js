@@ -58,3 +58,25 @@ describe('POST contacts',()=>{
      })
    })
   })
+
+  describe('PUT /contacts',()=>{
+    it('Check Post id contactList id:13',(done)=>{
+      request(router).put('/contacts/13')
+      .send({id:13,name:"nuntawat",email:'58160177@go.buu.ac.th',phone: '0830600325',url:'www.SillentGhost.com' ,notes:'Pom Gor Kao Jai' })
+      .expect(200)
+      .then((res)=>{
+        request(router).get('/contacts/13')
+        .then((res)=>{
+          let contact = res.body
+          expect(contact).toBeDefined()
+          expect(contact.id).toBe(13)
+          expect(contact.name).toBe("nuntawat")
+          expect(contact.email).toBe('58160177@go.buu.ac.th')
+          expect(contact.phone).toBe('0830600325')
+          expect(contact.url).toBe('www.SillentGhost.com')
+          expect(contact.notes).toBe('Pom Gor Kao Jai')
+        })
+        done()
+      })
+    })
+  })
