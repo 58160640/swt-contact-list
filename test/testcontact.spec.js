@@ -20,3 +20,20 @@ describe('GET contacts',()=>{
     })
   })
   })
+  
+  describe('GET contacts 1',()=>{
+    it('GET ID 1 Successfully',(done)=>{
+      request(router).get('/contacts/1') 
+      .expect(200)
+      .then((res)=>{
+        let contact = res.body
+        expect(contact.id).not.toBeUndefined()
+        expect(contact.name).toBeDefined() 
+        expect(contact.phone).not.toBeNull()
+        expect(contact.email).toBeDefined()
+        expect(contact.url).toBeDefined()
+        expect(contact.notes).not.toBeNull()
+        done()
+      })
+    })
+    })
