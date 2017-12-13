@@ -80,3 +80,19 @@ describe('POST contacts',()=>{
       })
     })
   })
+
+  describe('DELETE /contacts',()=>{
+    it('Delete id:1 SuccessFully ? ',(done)=>{
+    request(router).delete('/contacts/1')
+    .expect(204)
+    .then((res)=>{
+    request(router).get('/contacts/1')
+    .then((res)=>{
+      let contact = res.body
+      expect(contact).toBeDefined()
+      expect(contact.id).not.toBe(1)
+    })
+      done()
+    })
+  })
+})
