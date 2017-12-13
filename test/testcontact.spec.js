@@ -37,3 +37,24 @@ describe('GET contacts',()=>{
       })
     })
     })
+
+    
+describe('POST contacts',()=>{
+    it('Check Post id contactList id:12 ',(done)=>{
+      request(router).post('/contacts')
+      .send([{id:12,name:'Suphalert',email:'58160640@go.buu.ac.th',phone: '0922266382',url:'www.Louis.com' ,notes:'Ok Pom Kao jai' }])
+      .expect(201)
+      .then((res)=>{
+        let contacts = res.body
+        let contact = contacts[0]
+       expect(contacts).toBeDefined()
+       expect(contact.id).toBe(12)
+       expect(contact.name).toBe('Suphalert')
+       expect(contact.email).toBe('58160640@go.buu.ac.th')
+       expect(contact.phone).toBe('0922266382')
+       expect(contact.url).toBe('www.Louis.com')
+       expect(contact.notes).toBe('Ok Pom Kao jai')
+      done()
+     })
+   })
+  })
